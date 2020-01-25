@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-from cookiecutter import cli
+
+"""Custom Sphinx extension to build a list of all of cookiecutter's cli."""
 
 import click
-
 from docutils import nodes
 from docutils.parsers import rst
 from docutils.statemachine import ViewList
+
+from cookiecutter import cli
 
 
 class CcCommandLineOptions(rst.Directive):
@@ -16,7 +18,7 @@ class CcCommandLineOptions(rst.Directive):
             ".. option:: " + ", ".join(option.opts),
             "",
             option.help,
-            ""
+            "",
         ]
 
     def process_actions(self):
@@ -35,4 +37,4 @@ class CcCommandLineOptions(rst.Directive):
 
 
 def setup(app):
-    app.add_directive('cc-command-line-options', CcCommandLineOptions)
+    app.add_directive("cc-command-line-options", CcCommandLineOptions)
